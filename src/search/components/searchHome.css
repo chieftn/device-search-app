@@ -1,0 +1,12 @@
+.search-home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.search-controls {
+    width: 80%;
+    min-width: 500px;
+}
