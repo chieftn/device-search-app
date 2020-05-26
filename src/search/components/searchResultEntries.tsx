@@ -4,17 +4,25 @@ import { SearchQueryResultValue } from '../models/searchQueryResultValue';
 
 export interface SearchResultEntriesProps {
     searchQueryResultValues: SearchQueryResultValue[];
+    totalNumberResultValues?: string;
 }
 
 export const SearchResultEntries: React.FC<SearchResultEntriesProps> = props => {
-    const { searchQueryResultValues } = props;
+    const { searchQueryResultValues, totalNumberResultValues } = props;
 
     return (
         <div>
-            <div>Results</div>
+            {totalNumberResultValues &&
+                <div>
+                    <span>{totalNumberResultValues}</span>
+                    <span style={{marginLeft: '4px', marginRight: '4px'}}>Results</span>
+                </div>
+            }
+
             <ul>
-                {searchQueryResultValues.map(s => {
+                {searchQueryResultValues.map((s,i) => {
                     return <SearchResultEntry
+                        key={i}
                         searchQueryResultValue={s}
                     />
                 })}

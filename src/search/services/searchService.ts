@@ -6,22 +6,26 @@ import { SearchQueryResult } from '../models/searchQueryResult';
 const API_VERSION = '2019-05-06'
 
 export interface SearchParameters {
-    queryCriteria: string;
+    queryText: string;
 }
 
 export const executeSearch = async (parameters : SearchParameters): Promise<SearchQueryResult> => {
-    const { queryCriteria } = parameters;
+    const { queryText } = parameters;
     const { serviceName, indexName, searchKey } = applicationConfiguration.search;
 
-    const resourceUrl = `https://${serviceName}.search.windows.net/indexes/${indexName}/docs?api-version=${API_VERSION}&search=${encodeURIComponent(queryCriteria)}`;
+    const resourceUrl = `https://${serviceName}.search.windows.net/indexes/${indexName}/docs/search?api-version=${API_VERSION}`;
     const serviceRequestParams: RequestInit = {
+            body: JSON.stringify({
+                count: true,
+                search: queryText || '*'
+            }),
             headers: new Headers({
             'api-key': searchKey,
             'Accept': APPLICATION_JSON,
             'Content-Type': APPLICATION_JSON
         }),
 
-        method: HTTP_OPERATIONS.GET
+        method: HTTP_OPERATIONS.POST
     };
     const response = await fetch(resourceUrl, serviceRequestParams);
     if (!response.ok) {

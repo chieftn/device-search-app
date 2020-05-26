@@ -16,7 +16,7 @@ export const SearchResults: React.FC = () => {
     React.useEffect(() => {
         const execute = async () => {
             const result = await executeSearch({
-                queryCriteria: searchCriteria
+                queryText: searchCriteria
             });
 
             setSearchQueryResult(result);
@@ -31,6 +31,7 @@ export const SearchResults: React.FC = () => {
                 <div>
                     <SearchResultEntries
                         searchQueryResultValues={searchQueryResult.value}
+                        totalNumberResultValues={searchQueryResult["@odata.count"]}
                     />
                 </div>
             }
