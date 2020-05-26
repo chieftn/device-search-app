@@ -1,17 +1,18 @@
 import * as React from 'react';
-import { TextField } from '@fluentui/react/lib/TextField';
-import { PrimaryButton } from '@fluentui/react/lib/Button';
-
+import { useHistory } from 'react-router-dom';
+import { SearchBar } from './searchBar';
+import { queryStrings } from '../../constants';
 import './searchHome.css';
 
 export const SearchHome: React.FC = () => {
     const [searchCriteria, setSearchCriteria] = React.useState<string>('');
+    const history = useHistory();
 
-    const onSearchButtonClick = () => {
-        console.log('here we are');
+    const onSearch = () => {
+        history.push(`/results?${queryStrings.searchParameters}=${encodeURIComponent(searchCriteria)}`);
     }
 
-    const onSearchCriteriaChange = (event: any, newText: string) => {
+    const onSearchCriteriaChange = (newText: string) => {
         setSearchCriteria(newText);
     }
 
@@ -19,15 +20,10 @@ export const SearchHome: React.FC = () => {
         <div className='search-home'>
             <div className='search-controls'>
                 <h1 className='ms-font-su'>IoT Device Search</h1>
-                <TextField
-                    ariaLabel="Search"
-                    value={searchCriteria}
-                    onChange={onSearchCriteriaChange}
-                />
-                <PrimaryButton
-                    text="Search"
-                    ariaLabel="Search"
-                    onClick={onSearchButtonClick}
+                <SearchBar
+                    searchCriteria={searchCriteria}
+                    onSearchCriteriaChange={onSearchCriteriaChange}
+                    onSearch={onSearch}
                 />
             </div>
         </div>

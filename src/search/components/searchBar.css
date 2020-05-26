@@ -1,0 +1,8 @@
+.search-bar {
+    display: flex;
+}
+
+.search-bar-text {
+    flex-grow: 2;
+    margin-right: 2px;
+}
