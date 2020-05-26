@@ -1,4 +1,4 @@
-const config = require('./applicationConfig.json');
+const config = require('./applicationConfiguration.json');
 
 export interface ApplicationConfiguration {
     search: SearchConfiguration;
