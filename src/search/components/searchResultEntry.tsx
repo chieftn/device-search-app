@@ -9,9 +9,11 @@ export const SearchResultEntry: React.FC<SearchResultEntryProps> = props => {
     const { searchQueryResultValue } = props;
     const { deviceId } = searchQueryResultValue;
 
+    console.log(JSON.stringify(searchQueryResultValue));
     return (
         <li>
-            <div>{deviceId}</div>
+            <span>{deviceId}</span>
+            <span>{searchQueryResultValue.iotEdge ? 'true': 'false'}</span>
         </li>
 
     );

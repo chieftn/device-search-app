@@ -17,6 +17,8 @@ export const executeSearch = async (parameters : SearchParameters): Promise<Sear
     const serviceRequestParams: RequestInit = {
             body: JSON.stringify({
                 count: true,
+                facets: ['iotEdge', 'status'],
+                filter: `(iotEdge eq true) and (status eq 'Enabled')`,
                 search: queryText || '*'
             }),
             headers: new Headers({
@@ -35,3 +37,9 @@ export const executeSearch = async (parameters : SearchParameters): Promise<Sear
     const responseBody = await response.json() as SearchQueryResult;
     return responseBody;
 };
+
+
+export const getFacet = async (): Promise<any> => {
+
+
+}

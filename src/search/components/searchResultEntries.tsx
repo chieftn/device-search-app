@@ -12,7 +12,7 @@ export const SearchResultEntries: React.FC<SearchResultEntriesProps> = props => 
 
     return (
         <div>
-            {totalNumberResultValues &&
+            {totalNumberResultValues && totalNumberResultValues !== '0' &&
                 <div>
                     <span>{totalNumberResultValues}</span>
                     <span style={{marginLeft: '4px', marginRight: '4px'}}>Results</span>
