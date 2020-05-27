@@ -5,6 +5,7 @@ import { QUERY_STRINGS, URL_STRINGS } from '../../constants';
 import { SearchQueryResult } from '../models/searchQueryResult';
 import { SearchResultEntries } from './searchResultEntries';
 import { SearchBar } from './searchBar';
+import { SearchFacets } from './searchFacets';
 import "./searchResults.css";
 
 export const SearchResults: React.FC = () => {
@@ -49,17 +50,20 @@ export const SearchResults: React.FC = () => {
             </div>
 
             <div className="left">
-                navigators
+                {searchQueryResult &&
+                    <SearchFacets
+                        searchQueryFacets={searchQueryResult["@search.facets"]}
+
+                    />
+                }
             </div>
 
             <div className="center">
                 {searchQueryResult &&
-                    <div>
-                        <SearchResultEntries
-                            searchQueryResultValues={searchQueryResult.value}
-                            totalNumberResultValues={searchQueryResult["@odata.count"]}
-                        />
-                    </div>
+                    <SearchResultEntries
+                        searchQueryResultValues={searchQueryResult.value}
+                        totalNumberResultValues={searchQueryResult["@odata.count"]}
+                    />
                 }
             </div>
         </div>

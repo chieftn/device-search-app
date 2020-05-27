@@ -1,5 +1,5 @@
 import { applicationConfiguration } from '../../applicationConfiguration/applicationConfiguration';
-import { HttpError } from '../../application/models/HttpError';
+import { HttpError } from '../../application/models/httpError';
 import { APPLICATION_JSON, HTTP_OPERATIONS } from '../../constants';
 import { SearchQueryResult } from '../models/searchQueryResult';
 
@@ -7,6 +7,8 @@ const API_VERSION = '2019-05-06'
 
 export interface SearchParameters {
     queryText: string;
+    facets?: string;
+    filters?: string;
 }
 
 export const executeSearch = async (parameters : SearchParameters): Promise<SearchQueryResult> => {
