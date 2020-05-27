@@ -17,9 +17,10 @@ export const executeSearch = async (parameters : SearchParameters): Promise<Sear
     const serviceRequestParams: RequestInit = {
             body: JSON.stringify({
                 count: true,
+                queryType: (queryText && queryText !== '*') ? 'full' : 'simple',
                 facets: ['iotEdge', 'status'],
-                filter: `(iotEdge eq false) and (status eq 'Enabled')`,
-                search: queryText || '*'
+                // filter: `(iotEdge eq false) and (status eq 'Enabled')`,
+                search: (queryText && queryText !== '*') ? `${queryText}~` : '*'
             }),
             headers: new Headers({
             'api-key': searchKey,

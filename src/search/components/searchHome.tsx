@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useHistory } from 'react-router-dom';
 import { SearchBar } from './searchBar';
-import { QUERY_STRINGS } from '../../constants';
+import { QUERY_STRINGS, URL_STRINGS } from '../../constants';
 import './searchHome.css';
 
 export const SearchHome: React.FC = () => {
@@ -9,7 +9,7 @@ export const SearchHome: React.FC = () => {
     const history = useHistory();
 
     const onSearch = () => {
-        history.push(`/results?${QUERY_STRINGS.SEARCH_PARAMETERS}=${encodeURIComponent(searchCriteria)}`);
+        history.push(`${URL_STRINGS.RESULTS}?${QUERY_STRINGS.SEARCH_PARAMETERS}=${encodeURIComponent(searchCriteria)}`);
     }
 
     const onSearchCriteriaChange = (newText: string) => {

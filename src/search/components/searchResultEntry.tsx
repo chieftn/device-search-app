@@ -9,7 +9,6 @@ export const SearchResultEntry: React.FC<SearchResultEntryProps> = props => {
     const { searchQueryResultValue } = props;
     const { deviceId } = searchQueryResultValue;
 
-    console.log(JSON.stringify(searchQueryResultValue));
     return (
         <li>
             <span>{deviceId}</span>

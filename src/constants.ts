@@ -2,6 +2,11 @@ export const QUERY_STRINGS = {
     SEARCH_PARAMETERS: 'search'
 };
 
+export const URL_STRINGS = {
+    HOME: '/',
+    RESULTS: '/results'
+}
+
 export const ERROR_TYPES = {
     HTTP: 'http'
 };

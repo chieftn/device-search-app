@@ -4,7 +4,7 @@ import { SearchQueryResultValue } from '../models/searchQueryResultValue';
 
 export interface SearchResultEntriesProps {
     searchQueryResultValues: SearchQueryResultValue[];
-    totalNumberResultValues?: string;
+    totalNumberResultValues?: number;
 }
 
 export const SearchResultEntries: React.FC<SearchResultEntriesProps> = props => {
@@ -12,12 +12,13 @@ export const SearchResultEntries: React.FC<SearchResultEntriesProps> = props => 
 
     return (
         <div>
-            {totalNumberResultValues && totalNumberResultValues !== '0' &&
+              {totalNumberResultValues > 0 &&
                 <div>
                     <span>{totalNumberResultValues}</span>
                     <span style={{marginLeft: '4px', marginRight: '4px'}}>Results</span>
                 </div>
             }
+
 
             <ul>
                 {searchQueryResultValues.map((s,i) => {
