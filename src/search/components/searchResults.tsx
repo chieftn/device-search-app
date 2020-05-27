@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
+import { parse, stringify } from 'query-string';
 import { executeSearch } from '../services/searchService';
 import { QUERY_STRINGS, URL_STRINGS } from '../../constants';
 import { SearchQueryResult } from '../models/searchQueryResult';
@@ -12,14 +13,12 @@ export const SearchResults: React.FC = () => {
     const history = useHistory();
     const location = useLocation();
     const search = location.search;
-    const searchParams = new URLSearchParams(search);
+    const searchParams = parse(search);
 
     const [searchQueryResult, setSearchQueryResult] = React.useState<SearchQueryResult>(undefined);
-    const [searchCriteria, setSearchCriteria] = React.useState<string>(searchParams.get(QUERY_STRINGS.SEARCH_PARAMETERS) || '');
+    const [searchCriteria, setSearchCriteria] = React.useState<string>(searchParams[QUERY_STRINGS.SEARCH_PARAMETERS] || '');
 
     React.useEffect(() => {
-        console.log(search)
-
         const execute = async () => {
             const result = await executeSearch({
                 queryText: searchCriteria
@@ -36,7 +35,10 @@ export const SearchResults: React.FC = () => {
     }
 
     const onSearch = () => {
-        history.push(`${URL_STRINGS.RESULTS}?${QUERY_STRINGS.SEARCH_PARAMETERS}=${encodeURIComponent(searchCriteria)}`);
+        searchParams[QUERY_STRINGS.SEARCH_PARAMETERS] = searchCriteria;
+        const newSearch = stringify(searchParams);
+
+        history.push(`${URL_STRINGS.RESULTS}?${newSearch}`);
     }
 
     return (

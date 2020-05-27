@@ -15,8 +15,8 @@ export const SearchFacet: React.FC<SearchFacetProps> = props => {
             <h3>{getFacetName(facetName)}</h3>
             <div>
                {facetEntries.map((entry: SearchQueryFacetEntry) =>
-                    <div>
-                        <span>{getEntryName(facetName, entry.value)}</span>
+                    <div key={entry.value}>
+                        <span style={{marginRight: 5}}>{getEntryName(facetName, entry.value)}</span>
                         (<span>{entry.count}</span>)
                     </div>
                )}
@@ -31,14 +31,14 @@ export const getFacetName = (facetName: string): string => {
     }
 
     if (facetName === 'status') {
-        return 'Device Status'
+        return 'Device Status';
     }
 
     return facetName;
 };
 
 export const getEntryName = (facetName: string, entryValue: string | boolean): string => {
-    if (facetName = 'iotEdge') {
+    if (facetName === 'iotEdge') {
         return entryValue ? 'Edge Devices' : 'Non-Edge Devices';
     }
 

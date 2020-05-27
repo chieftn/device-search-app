@@ -20,6 +20,7 @@
   "dependencies": {
     "@fluentui/react": "7.115.4",
     "dist": "^0.1.2",
+    "query-string": "6.12.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-router-dom": "5.2.0"
