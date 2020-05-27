@@ -18,7 +18,7 @@ export const executeSearch = async (parameters : SearchParameters): Promise<Sear
             body: JSON.stringify({
                 count: true,
                 facets: ['iotEdge', 'status'],
-                filter: `(iotEdge eq true) and (status eq 'Enabled')`,
+                filter: `(iotEdge eq false) and (status eq 'Enabled')`,
                 search: queryText || '*'
             }),
             headers: new Headers({

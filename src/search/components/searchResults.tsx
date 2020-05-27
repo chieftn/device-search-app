@@ -4,6 +4,7 @@ import { executeSearch } from '../services/searchService';
 import { QUERY_STRINGS } from '../../constants';
 import { SearchQueryResult } from '../models/searchQueryResult';
 import { SearchResultEntries } from './searchResultEntries';
+import "./searchResults.css";
 
 export const SearchResults: React.FC = () => {
     const location = useLocation();
@@ -26,15 +27,29 @@ export const SearchResults: React.FC = () => {
     }, []);
 
     return (
-        <div>
-            {searchQueryResult &&
-                <div>
-                    <SearchResultEntries
-                        searchQueryResultValues={searchQueryResult.value}
-                        totalNumberResultValues={searchQueryResult["@odata.count"]}
-                    />
-                </div>
-            }
+        <div className="search-results">
+            <div className="search-results-header">
+                <div>top</div>
+            </div>
+
+            <div className="search-results-left">
+                <div>left</div>
+
+            </div>
+
+            <div className="search-results-center">
+                {searchQueryResult &&
+                    <div>
+                        <SearchResultEntries
+                            searchQueryResultValues={searchQueryResult.value}
+                            totalNumberResultValues={searchQueryResult["@odata.count"]}
+                        />
+                    </div>
+                }
+            </div>
+
+
+
         </div>
     )
 };

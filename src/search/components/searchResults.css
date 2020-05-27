@@ -1,0 +1,24 @@
+.search-results {
+    height: 1vh;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-areas:
+    "left head"
+    "left center";
+
+};
+
+.search-top {
+    grid-area: head;
+    background-color: black;
+};
+
+.search-results-left {
+    grid-area: left;
+    background-color: blue;
+}
+
+.search-results-center {
+    grid-area: center;
+    background-color: red;
+};
